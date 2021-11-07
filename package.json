@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "bip39": "^3.0.4",
-    "bitcoinjs-lib": "^5.2.0",
     "ecpair": "^1.0.1"
   },
   "devDependencies": {
