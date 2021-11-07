@@ -4,13 +4,15 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.mjs"
+    "dev": "nodemon app.mjs",
+    "devqr": "nodemon appqr.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bip39": "^3.0.4",
-    "ethers": "^5.5.1"
+    "ethers": "^5.5.1",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"
