@@ -11,5 +11,8 @@
     "bip32": "^2.0.6",
     "bitcoinjs-lib": "^5.2.0",
     "ecpair": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
   }
 }
