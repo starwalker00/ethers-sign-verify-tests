@@ -15,12 +15,36 @@ var mnemonic = bip39.entropyToMnemonic(randomBytes.toString('hex'))
 console.log(`${bgcolor} mnemonic: ${resetbgcolor}`)
 console.log(mnemonic)
 
+// generate wallet
 var wallet = ethers.Wallet.fromMnemonic(mnemonic)
 console.log(`${bgcolor} wallet: ${resetbgcolor}`)
 console.dir(wallet, {depth: null, colors: true})
 console.log(`wallet._isSigner ? ${wallet._isSigner}`)
 
+// sign a message
 var message = 'test'
-signedMessage = await wallet.signMessage(message)
+console.log(`${bgcolor} message: ${resetbgcolor}`)
+console.log(message)
+var signedMessage = await wallet.signMessage(message)
+console.log(`${bgcolor} signedMessage: ${resetbgcolor}`)
 console.log(signedMessage)
-// ethers.utils.verifyMessage( message , signature )
+
+// verify signer IS the expected signer with EXACT message - happy path
+var signerAddress = ethers.utils.verifyMessage(message , signedMessage)
+console.log(`${bgcolor} signerAddress: ${resetbgcolor}`)
+console.log(signerAddress)
+var expectedSignerAddress = wallet.address
+console.log(`${bgcolor} expectedSignerAddress: ${resetbgcolor}`)
+console.log(expectedSignerAddress)
+console.log(`${bgcolor} expectedSignerAddress === signerAddress ? ${resetbgcolor}`)
+console.log(expectedSignerAddress === signerAddress)
+
+// verify signer IS NOT the expected signer with ALTERED message - unhappy path
+var alteredMessage = message + 'altered'
+console.log(`${bgcolor} alteredMessage: ${resetbgcolor}`)
+console.log(alteredMessage)
+var badSignerAddress = ethers.utils.verifyMessage(alteredMessage , signedMessage)
+console.log(`${bgcolor} badSignerAddress: ${resetbgcolor}`)
+console.log(badSignerAddress)
+console.log(`${bgcolor} expectedSignerAddress === badSignerAddress ? ${resetbgcolor}`)
+console.log(expectedSignerAddress === badSignerAddress)
