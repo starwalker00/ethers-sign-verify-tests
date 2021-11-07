@@ -5,14 +5,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.mjs",
-    "devqr": "nodemon appqr.mjs"
+    "devqrcode": "nodemon appqrcode.mjs"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bip39": "^3.0.4",
     "ethers": "^5.5.1",
-    "qrcode": "^1.4.4"
+    "jimp": "^0.16.1",
+    "qrcode": "^1.4.4",
+    "qrcode-reader": "^1.0.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"
