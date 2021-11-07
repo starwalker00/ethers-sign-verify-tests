@@ -19,7 +19,9 @@ ethers.utils.verifyMessage(message , signedMessage) https://docs.ethers.io/v5/ap
 ## qrcode handling - server side and client side support
 
 code example : https://thecodebarbarian.com/creating-qr-codes-with-node-js.html
+
 https://www.npmjs.com/package/qrcode
+
 https://www.npmjs.com/package/qrcode-reader
 
 ## other node resources
