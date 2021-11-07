@@ -62,8 +62,8 @@ var image = await Jimp.read(buffer)
 let qrcode = new QRCodeReader()
 // qrcode-reader's API doesn't support promises, so wrap it
 const value = await new Promise((resolve, reject) => {
-qrcode.callback = (err, v) => err != null ? reject(err) : resolve(v);
-qrcode.decode(image.bitmap);
+    qrcode.callback = (err, v) => err != null ? reject(err) : resolve(v);
+    qrcode.decode(image.bitmap);
 });
 var result = value.result
 console.log(result);
