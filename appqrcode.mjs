@@ -7,10 +7,6 @@ import QRCodeReader from 'qrcode-reader'
 import fs from 'fs'
 import Jimp from 'jimp'
 
-// var Jimp = require("jimp");
-// var fs = require('fs')
-// var QrCode = require('qrcode-reader')
-
 var bgcolor = '\x1b[45m'
 var resetbgcolor = '\x1b[0m'
 
@@ -54,12 +50,14 @@ console.log(expectedSignerAddress === signerAddress)
 
 // QRCodeGenerator - encode -public address -tokenid -signedMessage
 var encodedString = [ signerAddress, message, signedMessage ].join(';')
-var url = await QRCodeGenerator.toString(encodedString,{type:'terminal'})
+// var url = await QRCodeGenerator.toString(encodedString,{type:'terminal'})
 // console.log(url)
+
 // write qrcode to file
-await QRCodeGenerator.toFile('./qrcode.png', encodedString)
-// read QRCode
-var buffer = fs.readFileSync('./qrcode.png')
+await QRCodeGenerator.toFile('./qrcodeexample.png', encodedString)
+
+// read QRCode from file
+var buffer = fs.readFileSync('./qrcodeexample.png')
 var image = await Jimp.read(buffer)
 let qrcode = new QRCodeReader()
 // qrcode-reader's API doesn't support promises, so wrap it
@@ -79,13 +77,3 @@ console.log(result)
 console.log(result.split(';'))
 console.log(`${bgcolor} qrcodegenerator input === qrcodereader output ? ${resetbgcolor}`)
 console.log(encodedString === result)
-
-// verify signer IS NOT the expected signer with ALTERED message - unhappy path
-var alteredMessage = message + 'altered'
-console.log(`${bgcolor} alteredMessage: ${resetbgcolor}`)
-console.log(alteredMessage)
-var badSignerAddress = ethers.utils.verifyMessage(alteredMessage , signedMessage)
-console.log(`${bgcolor} badSignerAddress: ${resetbgcolor}`)
-console.log(badSignerAddress)
-console.log(`${bgcolor} expectedSignerAddress === badSignerAddress ? ${resetbgcolor}`)
-console.log(expectedSignerAddress === badSignerAddress)
