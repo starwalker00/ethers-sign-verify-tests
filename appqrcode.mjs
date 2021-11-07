@@ -1,7 +1,8 @@
 import bip39 from 'bip39'
 import crypto from 'crypto'
 import ethers from 'ethers'
-// QRCode handling
+
+// QRCode handling packages :
 import QRCodeGenerator from 'qrcode'
 import QRCodeReader from 'qrcode-reader'
 import fs from 'fs'
