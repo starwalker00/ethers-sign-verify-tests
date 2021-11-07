@@ -1,7 +1,6 @@
-var bip39 = require('bip39')
-var crypto = require('crypto')
-
-var { ethers } = require("ethers")
+import bip39 from 'bip39'
+import crypto from 'crypto'
+import ethers from 'ethers'
 
 var bgcolor = '\x1b[45m'
 var resetbgcolor = '\x1b[0m'
@@ -19,3 +18,9 @@ console.log(mnemonic)
 var wallet = ethers.Wallet.fromMnemonic(mnemonic)
 console.log(`${bgcolor} wallet: ${resetbgcolor}`)
 console.dir(wallet, {depth: null, colors: true})
+console.log(`wallet._isSigner ? ${wallet._isSigner}`)
+
+var message = 'test'
+signedMessage = await wallet.signMessage(message)
+console.log(signedMessage)
+// ethers.utils.verifyMessage( message , signature )
